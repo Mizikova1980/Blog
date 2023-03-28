@@ -1,0 +1,21 @@
+<?php
+/** @var \App\Model\User $user */
+$user = $this->user;
+?>
+
+
+
+<?php if($user): ?>
+    Личный кабинет: <br>
+    Имя: <?=$user->getName(); ?> <br>
+    Электронная почта: <?=$user->getEmail(); ?> <br>
+    Дата регистрации: <?= $user->getCreatedAt(); ?> <br>
+
+<form action="/blog/index">
+    <input type="submit" value="Перейти в блог">
+</form>
+    
+
+<?php else: ?>
+    Пользователь не найден
+<?php endif; ?>
