@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        {% if user %}
+            Личный кабинет: <br>
+    Имя: {{user.name}} <br>
+    Электронная почта: {{user.email}} <br>
+    Дата регистрации: {{user.createdAt}} <br>
+
+<form action="/blog/index">
+    <input type="submit" value="Перейти в блог">
+</form>
+
+        {% elseif %}   
+            Пользователь не найден
+        {% endif %}
+            
+                
+    </body>
+</html>
+
