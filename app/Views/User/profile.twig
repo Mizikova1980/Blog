@@ -5,17 +5,20 @@
     </head>
     <body>
         {% if user %}
-            Личный кабинет: <br>
-    Имя: {{user.name}} <br>
-    Электронная почта: {{user.email}} <br>
-    Дата регистрации: {{user.createdAt}} <br>
+            <h1>Личный кабинет:</h1>
+            <ul>
+                <li> Имя: {{user.name}}</li>
+                <li>Электронная почта: {{user.email}}</li>
+                <li>Дата регистрации: {{user.createdAt}}</li>
+            </ul>
+            <br>
 
-<form action="/blog/index">
-    <input type="submit" value="Перейти в блог">
-</form>
+            <form action="/blog/index">
+                <input type="submit" value="Перейти в блог">
+            </form>
 
-        {% elseif %}   
-            Пользователь не найден
+        {% else %}   
+            <p>Пользователь не найден</p>
         {% endif %}
             
                 

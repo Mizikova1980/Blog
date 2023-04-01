@@ -28,10 +28,11 @@ class Blog extends AbstractController
         });
        
         
-        return $this->view->render('blog.phtml', [
+        return $this->view->renderTwig('blog.twig', [
             'user' => $this->user, 
             'messages' => $messages, 
-            'users' => $users
+            'users' => $users,
+            
         ]);
     }
 

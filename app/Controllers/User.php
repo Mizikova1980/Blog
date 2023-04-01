@@ -27,7 +27,7 @@ class User extends AbstractController
             }
         }
 
-        return $this->view->render('User/register.twig', [
+        return $this->view->renderTwig('User/register.twig', [
             'user' => UserModel::getById((int) $_SESSION['id'])
         ]);
     }
@@ -92,7 +92,7 @@ class User extends AbstractController
 
     public function profileAction()
     {
-        return $this->view->render('User/profile.twig', [
+        return $this->view->renderTwig('User/profile.twig', [
             'user' => UserModel::getById((int) $_SESSION['id'])
         ]);
 
@@ -105,13 +105,6 @@ class User extends AbstractController
     }
 
 
-    public function twigAction()
-    {
-        return $this->view->render('test.twig', [
-            'name' => 'Sasha']);
-        
-
-    }
 }
 
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+    </head>
+    <body>
+        <h4>Вы вошли как {{user.name}} </h4>
+        <form action="/user/logout">
+            <input type="submit" value="Выйти">
+        </form>
+        <h3>Список сообщений:</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {% if user.isAdmin %}
+                        <div class="admin">
+                            <a href="/admin/deleteMessage/?id={{message.id}}">Удалить</a>
+                            <a href="/api/getUserMessages/?user_id={{ message.authorId }}">Получить сообщения пользователя</a>
+                        </div>
+                    {% endif %}
+                    <span class="date">{{ message.createdAt }} </span>
+                    {% if message.authorId %}
+                        <span class="author">{{ message.authorId }}</span>
+                    {% else %}
+                        <span class="author">Сообщение от удаленного пользователя</span>
+                    {% endif %}
+                    <div class="text">{{ message.text }}</div>
+                    {% if message.image %}
+                        <div><img src="/images/{{message.image}}" style="width: 150px;"></div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Сообщений пока нет</p>
+        {% endif %}
+
+        
+        <h3>Добавить сообщение</h3>
+        <form enctype="multipart/form-data" action="/blog/addMessage" method="POST">
+            <textarea style="width: 250px; height: 150px;" type="text" value="" name="text"></textarea><br><br>
+            <label for="image">Изображение: </label>
+            <input type="file" name="image"><br>
+            <input type="submit" value="Отправить">
+        </form>
+            
+                
+    </body>
+</html>
