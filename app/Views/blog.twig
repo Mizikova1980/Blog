@@ -12,15 +12,16 @@
         {% if messages %}
             {% for message in messages %}
                 <div class="message">
-                    {% if user.isAdmin %}
+                    {% if user.isAdmin() %}
                         <div class="admin">
                             <a href="/admin/deleteMessage/?id={{message.id}}">Удалить</a>
-                            <a href="/api/getUserMessages/?user_id={{ message.authorId }}">Получить сообщения пользователя</a>
+                            <a href="/api/getUserMessages/?user_id={{ message['author_id']}}">Получить сообщения пользователя</a>
                         </div>
-                    {% endif %}
-                    <span class="date">{{ message.createdAt }} </span>
-                    {% if message.authorId %}
-                        <span class="author">{{ message.authorId }}</span>
+                    {% endif %} 
+                    
+                    <span class="date">{{ message['created_at'] }} </span>
+                    {% if message.author %}
+                        <span class="author">{{ message.author.name }}</span>
                     {% else %}
                         <span class="author">Сообщение от удаленного пользователя</span>
                     {% endif %}

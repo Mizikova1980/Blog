@@ -2,8 +2,10 @@
 
 namespace Base;
 
+use App\Controllers\Admin;
+use App\Controllers\Admin\Users;
 use App\Controllers\User;
-use App\Model\User as UserModel;
+use App\Model\Eloquent\User as UserModel;
 use Base\RouteException;
 use Base\AbstractController;
 use Base\View;
@@ -57,14 +59,11 @@ class Application extends AbstractController
        }
     }
 
-
-
-
-
     private function addRoutes()
     {
         /** @uses \App\Controllers\User::loginAction() */
         $this->route->addRoute('/', User::class, 'login');
+        $this->route->addRoute('/admin', Admin::class, 'index');
     }
 
     private function initController()

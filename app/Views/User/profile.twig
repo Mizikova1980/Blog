@@ -16,10 +16,17 @@
             <form action="/blog/index">
                 <input type="submit" value="Перейти в блог">
             </form>
+            <br/>
 
         {% else %}   
             <p>Пользователь не найден</p>
         {% endif %}
+
+        {% if user.isAdmin() %}
+            <form action="/admin/index">
+                <input type="submit" value="Перейти в админку">
+            </form>
+        {% endif %} 
             
                 
     </body>

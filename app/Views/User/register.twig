@@ -5,7 +5,7 @@
     </head>
     <body>
         <h2>Регистрация:</h2>
-        <form action="/user/register" method="POST">
+        <form enctype="multipart/form-data" action="/user/register" method="POST">
             <label for="name">Имя:</label>
             <input type="text" name="name"> <br>
             <label for="email">Электронная почта:</label>
@@ -14,6 +14,8 @@
             <input type="password" name="password"> <br>
             <label for="password_2">Подтверждение пароля:</label>
             <input type="password" name="password_2"> <br>
+            <label for="image">Изображение: </label>
+            <input type="file" name="image"><br>
             <input type="submit" value="Зарегистрироваться">
         </form>
             <br>

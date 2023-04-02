@@ -1,14 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use App\Model\User as UserModel;
+use App\Model\Eloquent\User as UserModel;
 use Base\AbstractController;
 
 class User extends AbstractController
 {
     public function loginAction()
     {
-        $email = trim($_POST['email']);
+        $email = trim($_POST['email']) ?? null;
 
         if (!empty($email)) {
             $password = $_POST['password'];
@@ -35,10 +35,10 @@ class User extends AbstractController
     public function registerAction()
     {
             
-        $name = trim($_POST['name']);
-        $email = trim($_POST['email']);
-        $password = $_POST['password'];
-        $password2 = $_POST['password_2'];
+        $name = trim($_POST['name']) ?? null;
+        $email = trim($_POST['email']) ?? null;
+        $password = $_POST['password'] ?? null;
+        $password2 = $_POST['password_2'] ?? null;
 
         $success = true;
         if (isset($_POST['name'])) {
@@ -76,15 +76,22 @@ class User extends AbstractController
             }
 
             if ($success) {
-                $user = (new UserModel())
-                    ->setName($name)
-                    ->setEmail($email)
-                    ->setPassword(UserModel::getPasswordHash($password));
-                             
+                
+                $userData = [
+                    'name' => $name,
+                    'password' => UserModel::getPasswordHash($password),
+                     'email' => $email,
+                     'created_at' => date('Y-m-d H:i:s'),
+                ];
+                $user = new UserModel($userData);
+
+                if (isset($_FILES['image']['tmp_name'])) {
+                    $user->loadFile($_FILES['image']['tmp_name']);
+                }
+                
                 $user->save();
                 
                 $_SESSION['id'] = $user->getId();
-                $this->setUser($user);
                 $this->redirect('/user/profile');
             }
         }

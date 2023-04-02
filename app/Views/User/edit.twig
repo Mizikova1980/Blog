@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EditUser</title>
+    </head>
+    <body>
+
+    <h3>Редактировать пользователя</h3>
+        <form enctype="multipart/form-data" action="/admin/editUser" method="POST">
+            <label for="id">ID пользователя</label>
+            <input type="text" name="id" value="{{user['id']}}"><br>
+            <label for="name">Имя:</label>
+            <input type="text" name="name" value="{{user['name']}}"><br>
+            <label for="email">Электронная почта:</label>
+            <input type="email" name="email" value="{{user['email']}}"><br>
+            <input type="hidden" name="password" value="{{user['password']}}"><br>
+            <label for="image">Изображение: </label>
+            <input type="file" name="image"><br>
+            <input type="submit" value="Редактировать">
+        </form>
+
+    </body>
+</html>

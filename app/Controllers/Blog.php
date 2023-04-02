@@ -1,8 +1,8 @@
 <?php
 namespace App\Controllers;
 
-use App\Model\Message;
-use App\Model\User as UserModel;
+use App\Model\Eloquent\Message;
+use App\Model\Eloquent\User as UserModel;
 use Base\AbstractController;
 
 class Blog extends AbstractController
@@ -14,33 +14,18 @@ class Blog extends AbstractController
         }
 
         $messages = Message::getList();
-        if(!empty($messages)) {
-            $userIds = array_map(function(Message $message) {
-                return $message->getAuthorId();
-            }, $messages);
-        }
-        
-        $users = UserModel::getByIds($userIds);
-        array_walk($messages, function (Message $message) use ($users) {
-            if (isset($users[$message->getAuthorId()])) {
-                $message->setAuthor($users[$message->getAuthorId()]);
-            }
-        });
-       
-        
+              
         return $this->view->renderTwig('blog.twig', [
             'user' => $this->user, 
             'messages' => $messages, 
-            'users' => $users,
-            
         ]);
     }
 
     public function addMessageAction()
     {
               
-        $text = $_POST['text'];
-        $authorId = $_SESSION['id'];
+        $text = $_POST['text'] ?? null;
+        $authorId = $_SESSION['id'] ?? null;
 
         if (!$text) {
             echo 'Сообщение не может быть пустым';

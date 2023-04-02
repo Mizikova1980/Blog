@@ -22,7 +22,6 @@ class View
     public function render(string $tpl, $data = [])
     {
         $this->data = $data;
-        //extract($data);
         ob_start();
         include $this->templatePath . DIRECTORY_SEPARATOR . $tpl;
         return ob_get_clean();

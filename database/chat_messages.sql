@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `chat` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `chat`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: chat
@@ -33,7 +31,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `author_idx` (`author_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +40,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (2,'как дела?','2023-03-25 21:25:31',340,''),(3,'как дела?','2023-03-25 22:14:29',340,''),(4,'Добрый день','2023-03-25 22:14:49',341,''),(12,'Dcjlfluyf','2023-03-26 00:02:24',309,'e6eac54031578f83966a87a582c2b5d6a198ea35.jpg');
+INSERT INTO `messages` VALUES (2,'как дела?','2023-03-25 21:25:31',340,''),(3,'как дела?','2023-03-25 22:14:29',340,''),(4,'Добрый день','2023-03-25 22:14:49',341,''),(14,'lkcf\'lkwef\'qlkrf','2023-03-27 22:25:15',345,''),(16,'hycfltdltcdg','2023-04-01 22:43:49',309,'ba039f191044b4b2f825652dfc768f65b842d53a.jpg');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-26  0:07:29
+-- Dump completed on 2023-04-02 19:41:01

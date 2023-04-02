@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin</title>
+    </head>
+    <body>
+        <h4>Вы вошли как {{user['name']}} </h4>
+        <form action="/user/logout">
+            <input type="submit" value="Выйти">
+        </form>
+               
+        <h3>Список пользователей:</h3>
+        <table >
+            <tr>
+                <th>Id</th>
+                <th>Имя пользователя</th>
+                <th>Электронная почта</th>
+                <th>Фото</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user['id'] }}</td>
+                <td>{{ user['name'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>{{ user['image'] }}</td>
+                <td>
+                    <a href="/admin/getUserForEdit/?id={{user.id}}">Редактировать</a>
+                </td>
+                <td>
+                    <a href="/admin/deleteUser/?id={{user.id}}">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+
+    <h3>Создать нового пользователя</h3>
+        <form enctype="multipart/form-data" action="/admin/addUser" method="POST">
+            <label for="name">Имя:</label>
+            <input type="text" name="name"> <br>
+            <label for="email">Электронная почта:</label>
+            <input type="email" name="email"> <br>
+            <label for="password">Пароль:</label>
+            <input type="password" name="password"> <br>
+            <label for="password_2">Подтверждение пароля:</label>
+            <input type="password" name="password_2"> <br>
+            <label for="image">Изображение: </label>
+            <input type="file" name="image"><br>
+            <input type="submit" value="Зарегистрировать">
+        </form>
+
+    </body>
+</html>

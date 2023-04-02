@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Model\Message;
+use App\Model\Eloquent\Message;
 use Base\AbstractController;
 
 class Api extends AbstractController
@@ -10,6 +10,10 @@ class Api extends AbstractController
     {
         $userId = $_GET['user_id'] ?? null;
         $messages = Message::getUserMessages($userId, 20);
+
+
+        var_dump($messages);
+        die;
 
         if(!$userId) {
             return $this->response(['error' => 'no user_id']);

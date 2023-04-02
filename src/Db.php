@@ -19,6 +19,7 @@ class Db
 
     public static function getInstance(): self
     {
+        throw new \Exception('no use db class');
         if (!self::$instance) {
             self::$instance = new self();
         }
